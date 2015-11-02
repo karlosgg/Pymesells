@@ -7,7 +7,9 @@
 package Vista;
 
 import Control.ClienteControlador;
+import Control.ProveedorControlador;
 import Modelo.Entity.Cliente;
+import Modelo.Entity.Proveedor;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.List;
@@ -22,9 +24,13 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Inicio extends javax.swing.JFrame {
     DefaultTableModel modelCliente;
+    DefaultTableModel modelProveedor;
     ClienteControlador c;
     List<Cliente> clientes;
+    List<Proveedor> proveedores;
     Cliente cliente;
+    Proveedor proveedor;
+    ProveedorControlador p;
     /**
      * Creates new form Inicio
      */
@@ -36,6 +42,7 @@ public class Inicio extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(Inicio.EXIT_ON_CLOSE);
        modelCliente= (DefaultTableModel) tb_Clientes.getModel();
+       modelProveedor= (DefaultTableModel) tb_Proveedores.getModel();
        
     }
 
@@ -175,28 +182,29 @@ public class Inicio extends javax.swing.JFrame {
         txt_telefonoCliente = new javax.swing.JTextField();
         btn_modificarCliente = new javax.swing.JButton();
         jPanel16 = new javax.swing.JPanel();
-        jTextField48 = new javax.swing.JTextField();
-        jFormattedTextField15 = new javax.swing.JFormattedTextField();
+        txt_NregistroProveedor = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea2 = new javax.swing.JTextArea();
+        txt_direccionProveedor = new javax.swing.JTextArea();
         jLabel100 = new javax.swing.JLabel();
-        jTextField50 = new javax.swing.JTextField();
-        jTextField54 = new javax.swing.JTextField();
+        txt_nombreProveedor = new javax.swing.JTextField();
+        txt_nitProveedor = new javax.swing.JTextField();
         jLabel101 = new javax.swing.JLabel();
         jLabel102 = new javax.swing.JLabel();
         jButton9 = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         jLabel103 = new javax.swing.JLabel();
-        jTextField55 = new javax.swing.JTextField();
+        txt_telefonoProveedor = new javax.swing.JTextField();
         jLabel104 = new javax.swing.JLabel();
         jLabel105 = new javax.swing.JLabel();
         jLabel106 = new javax.swing.JLabel();
-        jTextField56 = new javax.swing.JTextField();
+        txt_giroProveedor = new javax.swing.JTextField();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTable9 = new javax.swing.JTable();
+        tb_Proveedores = new javax.swing.JTable();
         txt_buscarProveedor = new javax.swing.JTextField();
-        jButton24 = new javax.swing.JButton();
+        btn_buscarClientes = new javax.swing.JButton();
         cb_CampoProveedor = new javax.swing.JComboBox();
+        txt_nrcProveedor = new javax.swing.JTextField();
+        jButton13 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("PymeSell - Sistema de Ventas - Versión 1.0");
@@ -1318,24 +1326,15 @@ public class Inicio extends javax.swing.JFrame {
         jPanel16.setPreferredSize(new java.awt.Dimension(831, 639));
         jPanel16.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jTextField48.setBackground(new java.awt.Color(6, 56, 82));
-        jTextField48.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel16.add(jTextField48, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 29, 83, -1));
+        txt_NregistroProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_NregistroProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.add(txt_NregistroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 29, 83, -1));
 
-        jFormattedTextField15.setBackground(new java.awt.Color(6, 56, 82));
-        jFormattedTextField15.setForeground(new java.awt.Color(255, 255, 255));
-        jFormattedTextField15.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("dd-MM-yyyy"))));
-        jFormattedTextField15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField15ActionPerformed(evt);
-            }
-        });
-        jPanel16.add(jFormattedTextField15, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 159, 156, -1));
-
-        jTextArea2.setBackground(new java.awt.Color(6, 56, 82));
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(5);
-        jScrollPane2.setViewportView(jTextArea2);
+        txt_direccionProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_direccionProveedor.setColumns(20);
+        txt_direccionProveedor.setForeground(new java.awt.Color(204, 255, 255));
+        txt_direccionProveedor.setRows(5);
+        jScrollPane2.setViewportView(txt_direccionProveedor);
 
         jPanel16.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 370, 50));
 
@@ -1344,13 +1343,13 @@ public class Inicio extends javax.swing.JFrame {
         jLabel100.setText("Nombre:");
         jPanel16.add(jLabel100, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 110, -1, -1));
 
-        jTextField50.setBackground(new java.awt.Color(6, 56, 82));
-        jTextField50.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel16.add(jTextField50, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 107, 296, -1));
+        txt_nombreProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_nombreProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.add(txt_nombreProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 107, 296, -1));
 
-        jTextField54.setBackground(new java.awt.Color(6, 56, 82));
-        jTextField54.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel16.add(jTextField54, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 55, 151, -1));
+        txt_nitProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_nitProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.add(txt_nitProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 55, 151, -1));
 
         jLabel101.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel101.setForeground(new java.awt.Color(230, 223, 68));
@@ -1364,21 +1363,30 @@ public class Inicio extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton9.setText("Guardar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
         jPanel16.add(jButton9, new org.netbeans.lib.awtextra.AbsoluteConstraints(714, 29, 109, -1));
 
         jButton23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton23.setText("Eliminar");
-        jButton23.setEnabled(false);
-        jPanel16.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(714, 70, 109, -1));
+        jButton23.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton23ActionPerformed(evt);
+            }
+        });
+        jPanel16.add(jButton23, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 109, -1));
 
         jLabel103.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel103.setForeground(new java.awt.Color(230, 223, 68));
         jLabel103.setText("Teléfono:");
         jPanel16.add(jLabel103, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 162, -1, -1));
 
-        jTextField55.setBackground(new java.awt.Color(6, 56, 82));
-        jTextField55.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel16.add(jTextField55, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 81, 151, -1));
+        txt_telefonoProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_telefonoProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.add(txt_telefonoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 160, 151, -1));
 
         jLabel104.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel104.setForeground(new java.awt.Color(230, 223, 68));
@@ -1387,7 +1395,7 @@ public class Inicio extends javax.swing.JFrame {
 
         jLabel105.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel105.setForeground(new java.awt.Color(230, 223, 68));
-        jLabel105.setText("DUI:");
+        jLabel105.setText("NRC:");
         jPanel16.add(jLabel105, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 84, -1, -1));
 
         jLabel106.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -1395,19 +1403,19 @@ public class Inicio extends javax.swing.JFrame {
         jLabel106.setText("Giro:");
         jPanel16.add(jLabel106, new org.netbeans.lib.awtextra.AbsoluteConstraints(18, 136, -1, -1));
 
-        jTextField56.setBackground(new java.awt.Color(6, 56, 82));
-        jTextField56.setForeground(new java.awt.Color(255, 255, 255));
-        jPanel16.add(jTextField56, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 133, 372, -1));
+        txt_giroProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_giroProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.add(txt_giroProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 133, 372, -1));
 
-        jTable9.setModel(new javax.swing.table.DefaultTableModel(
+        tb_Proveedores.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Nº Registro", "Nombre", "Giro", "Direccion", "Telefono"
+                "Nº Registro", "Nombre", "Giro", "Direccion", "Telefono", "NIT", "NRC"
             }
         ));
-        jScrollPane10.setViewportView(jTable9);
+        jScrollPane10.setViewportView(tb_Proveedores);
 
         jPanel16.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 805, 200));
 
@@ -1415,12 +1423,30 @@ public class Inicio extends javax.swing.JFrame {
         txt_buscarProveedor.setForeground(new java.awt.Color(255, 255, 255));
         jPanel16.add(txt_buscarProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(516, 280, 200, -1));
 
-        jButton24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton24.setText("Buscar");
-        jPanel16.add(jButton24, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 98, -1));
+        btn_buscarClientes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        btn_buscarClientes.setText("Buscar");
+        btn_buscarClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_buscarClientesActionPerformed(evt);
+            }
+        });
+        jPanel16.add(btn_buscarClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 280, 98, -1));
 
         cb_CampoProveedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "TODOS:", "NOMBRE:", "NIT:", "NRC:" }));
-        jPanel16.add(cb_CampoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 280, -1, -1));
+        jPanel16.add(cb_CampoProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
+
+        txt_nrcProveedor.setBackground(new java.awt.Color(6, 56, 82));
+        txt_nrcProveedor.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.add(txt_nrcProveedor, new org.netbeans.lib.awtextra.AbsoluteConstraints(103, 81, 151, -1));
+
+        jButton13.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton13.setText("Modificar");
+        jButton13.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton13ActionPerformed(evt);
+            }
+        });
+        jPanel16.add(jButton13, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 280, 110, -1));
 
         jTabbedPane1.addTab("Proveedores", jPanel16);
 
@@ -1448,10 +1474,6 @@ public class Inicio extends javax.swing.JFrame {
         Administracion adm=new Administracion();
         adm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jFormattedTextField15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField15ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField15ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         MensualCompras adm=new MensualCompras();
@@ -1603,7 +1625,6 @@ public class Inicio extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_eliminarClienteActionPerformed
 
     private void btn_modificarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarClienteActionPerformed
-        // TODO add your handling code here:
         // Modificar cliente
          if(tb_Clientes.getSelectedRow()==-1){
             JOptionPane.showMessageDialog(null, "Debe seleccionar un cliente de la lista");
@@ -1632,6 +1653,175 @@ public class Inicio extends javax.swing.JFrame {
         }
         }
     }//GEN-LAST:event_btn_modificarClienteActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+
+        if(txt_NregistroProveedor.getText()=="" & txt_nombreProveedor.getText()==""
+                & txt_nitProveedor.getText()=="" & txt_telefonoProveedor.getText()==""
+                & txt_giroProveedor.getText()=="" & txt_telefonoProveedor.getText()==""
+                & txt_direccionProveedor.getText()=="" ){
+            JOptionPane.showMessageDialog(null, "Todos los campos deben de llenarse");
+        }
+        else{
+            try{
+                Proveedor nuevo= new Proveedor();
+                
+                nuevo.setIdProveedor(txt_NregistroProveedor.getText().toUpperCase());
+                nuevo.setNit(txt_nitProveedor.getText().toUpperCase());
+                nuevo.setNrc(txt_telefonoProveedor.getText().toUpperCase());
+                nuevo.setNombre(txt_nombreProveedor.getText().toUpperCase());
+                nuevo.setGiro(txt_giroProveedor.getText().toUpperCase());              
+                nuevo.setTelefono(txt_telefonoProveedor.getText());
+                nuevo.setDireccion(txt_direccionProveedor.getText().toUpperCase());
+                
+                p=new ProveedorControlador();
+                p.Agregar(nuevo);
+                JOptionPane.showMessageDialog(null, "AGREGADO EXITOSAMENTE");
+                cb_CampoProveedor.setSelectedItem("NIT:");
+                txt_buscarProveedor.setText(txt_nitProveedor.getText());
+                btn_modificarClienteActionPerformed(evt);
+            }catch(Exception ex){
+                JOptionPane.showMessageDialog(null, "No se pudo ingresar el nuevo proveedor, revise los datos");
+            }
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void btn_buscarClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_buscarClientesActionPerformed
+    
+        //Modelo para actualizar la tabla
+        p=new ProveedorControlador();
+        modelProveedor.setRowCount(0);
+        
+        //Verificar parametros de busqueda
+        if(!cb_CampoProveedor.getSelectedItem().toString().equals("TODOS:") & 
+                txt_buscarProveedor.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Necesita ingresar un parámetro para la búsqueda");
+        }
+        else{
+            //Buscar los proveedores por NOMBRE, NIT, NRC o todos          
+            
+        //BUSCAR POR NOMBRE
+        if(cb_CampoProveedor.getSelectedItem().toString().equals("NOMBRE:")){
+            try {
+                p.setNombre(txt_buscarProveedor.getText());
+                proveedores= p.BuscarXNombre();
+                if(proveedores!=null){
+                    for(Proveedor pro: proveedores){
+                modelProveedor.addRow(new Object[]{pro.getIdProveedor(),pro.getNombre()
+                            , pro.getGiro(),pro.getDireccion(),pro.getTelefono()
+                            , pro.getNit(), pro.getNrc()});
+                    }
+                }
+                else{
+                JOptionPane.showMessageDialog(null, "No se encontró al proveedor con el nombre: " + p.getNombre());
+                }
+            } catch (Exception ex) {
+                System.out.println("Error Nombre->" + ex);
+            }
+        }
+        //BUSCAR POR NIT
+        if(cb_CampoProveedor.getSelectedItem().toString().equals("NIT:")){
+            try {
+                p.setNit(txt_buscarProveedor.getText());
+                proveedor= p.BuscarXNit();
+                if(proveedor!=null){
+                modelProveedor.addRow(new Object[]{proveedor.getIdProveedor(),proveedor.getNombre()
+                            , proveedor.getGiro(),proveedor.getDireccion(),proveedor.getTelefono()
+                            , proveedor.getNit(), proveedor.getNrc()});
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se encontró al proveedor con el NIT: " + p.getNit());
+                }
+            } catch (Exception ex) {
+                System.out.println("Error Nit->" + ex);
+            }
+        }
+        //BUSCAR POR NRC
+        if(cb_CampoProveedor.getSelectedItem().toString().equals("NRC:")){
+            try {
+                p.setNrc(txt_buscarProveedor.getText());
+                proveedor= p.BuscarXNrc();
+                if(proveedor!=null){
+                modelProveedor.addRow(new Object[]{proveedor.getIdProveedor(),proveedor.getNombre()
+                            , proveedor.getGiro(),proveedor.getDireccion(),proveedor.getTelefono()
+                            , proveedor.getNit(), proveedor.getNrc()});
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se encontró al proveedor con el Nrc: " + p.getNrc());
+                }
+            } catch (Exception ex) {
+                System.out.println("Error Nrc->" + ex);
+            }
+        }
+        if(cb_CampoProveedor.getSelectedItem().toString().equals("TODOS:")){
+              //TODO
+            txt_buscarProveedor.setText(null);
+            try {
+                proveedores = p.Obtener(txt_buscarProveedor.getText());
+                for(Proveedor pr: proveedores){
+                    modelProveedor.addRow(new Object[]{pr.getIdProveedor(),pr.getNombre()
+                            , pr.getGiro(),pr.getDireccion(),pr.getTelefono(),pr.getNit(),pr.getNrc()});
+                }
+                
+            } catch (Exception ex) {
+                System.out.println("Error ->" + ex);
+            }
+        }
+        }
+        tb_Proveedores.setModel(modelProveedor);
+        modelProveedor.fireTableDataChanged();
+    }//GEN-LAST:event_btn_buscarClientesActionPerformed
+
+    private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
+        // Eliminar Proveedor
+         if(tb_Clientes.getSelectedRow()==-1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un proveedor de la lista");
+        }else{ 
+            int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea eliminar al proveedor " +
+                   tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),1) + "?",
+                     "ELIMINAR PROVEEDOR", JOptionPane.YES_NO_OPTION);
+            
+            if (respuesta == JOptionPane.YES_OPTION) {
+                p=new ProveedorControlador();
+                p.Eliminar(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),0).toString());
+                JOptionPane.showMessageDialog(null, "Proveedor Eliminado existosamente");
+                cb_CampoProveedor.setSelectedItem("TODO:");
+                btn_modificarClienteActionPerformed(evt);
+                
+            }
+        }
+                   
+    }//GEN-LAST:event_jButton23ActionPerformed
+
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+         // Modificar cliente
+         if(tb_Proveedores.getSelectedRow()==-1){
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un proveedor de la lista");
+        }else{
+             int respuesta = JOptionPane.showConfirmDialog(null, "¿Seguro que desea modificar el proveedor?",
+                     "Modificar", JOptionPane.YES_NO_OPTION);
+        if (respuesta == JOptionPane.YES_OPTION) {
+            proveedor=new Proveedor();
+            proveedor=proveedores.get(tb_Proveedores.getSelectedRow());
+            proveedor.setIdProveedor(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),0).toString());
+            proveedor.setNombre(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),1).toString().toUpperCase());
+            proveedor.setGiro(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),2).toString().toUpperCase());
+            proveedor.setDireccion(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),3).toString().toUpperCase());
+            proveedor.setTelefono(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),4).toString().toUpperCase());
+            proveedor.setNit(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),5).toString().toUpperCase());
+            proveedor.setNrc(tb_Proveedores.getValueAt(tb_Proveedores.getSelectedRow(),6).toString().toUpperCase());
+            p=new ProveedorControlador();
+            p.Modificar(proveedor);
+            JOptionPane.showMessageDialog(null, "Proveedor Modificado existosamente -> "+proveedor.getNombre());
+            cb_CampoProveedor.setSelectedItem("TODO:");
+            btn_modificarClienteActionPerformed(evt);
+        }
+        else {
+           cb_CampoCliente.setSelectedItem("TODO:");
+           btn_modificarClienteActionPerformed(evt);
+        }
+        }
+    }//GEN-LAST:event_jButton13ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1670,6 +1860,7 @@ public class Inicio extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel NRC;
+    private javax.swing.JButton btn_buscarClientes;
     private javax.swing.JButton btn_eliminarCliente;
     private javax.swing.JButton btn_modificarCliente;
     private javax.swing.JComboBox cb_CampoCliente;
@@ -1678,6 +1869,7 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;
+    private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton15;
     private javax.swing.JButton jButton16;
     private javax.swing.JButton jButton17;
@@ -1685,7 +1877,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
     private javax.swing.JButton jButton23;
-    private javax.swing.JButton jButton24;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
@@ -1701,7 +1892,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jFormattedTextField12;
     private javax.swing.JFormattedTextField jFormattedTextField13;
     private javax.swing.JFormattedTextField jFormattedTextField14;
-    private javax.swing.JFormattedTextField jFormattedTextField15;
     private javax.swing.JFormattedTextField jFormattedTextField4;
     private javax.swing.JFormattedTextField jFormattedTextField6;
     private javax.swing.JFormattedTextField jFormattedTextField8;
@@ -1786,8 +1976,6 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTable jTable7;
     private javax.swing.JTable jTable8;
-    private javax.swing.JTable jTable9;
-    private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField12;
     private javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField25;
@@ -1802,21 +1990,24 @@ public class Inicio extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField41;
     private javax.swing.JTextField jTextField45;
     private javax.swing.JTextField jTextField46;
-    private javax.swing.JTextField jTextField48;
-    private javax.swing.JTextField jTextField50;
-    private javax.swing.JTextField jTextField54;
-    private javax.swing.JTextField jTextField55;
-    private javax.swing.JTextField jTextField56;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTable tb_Clientes;
+    private javax.swing.JTable tb_Proveedores;
     private javax.swing.JTextField txt_NregistroCliente;
+    private javax.swing.JTextField txt_NregistroProveedor;
     private javax.swing.JTextField txt_buscarCliente;
     private javax.swing.JTextField txt_buscarProveedor;
     private javax.swing.JTextArea txt_direccionCliente;
+    private javax.swing.JTextArea txt_direccionProveedor;
     private javax.swing.JTextField txt_giroCliente;
+    private javax.swing.JTextField txt_giroProveedor;
     private javax.swing.JTextField txt_nitCliente;
+    private javax.swing.JTextField txt_nitProveedor;
     private javax.swing.JTextField txt_nombreCliente;
+    private javax.swing.JTextField txt_nombreProveedor;
     private javax.swing.JTextField txt_nrcCliente;
+    private javax.swing.JTextField txt_nrcProveedor;
     private javax.swing.JTextField txt_telefonoCliente;
+    private javax.swing.JTextField txt_telefonoProveedor;
     // End of variables declaration//GEN-END:variables
 }

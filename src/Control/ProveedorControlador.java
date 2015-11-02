@@ -4,8 +4,8 @@
  * and open the template in the editor.
  */
 package Control;
-import Modelo.Entity.Cliente;
-import Modelo.ClienteJpaController;
+import Modelo.Entity.Proveedor;
+import Modelo.ProveedorJpaController;
 import Modelo.exceptions.NonexistentEntityException;
 import java.text.ParseException;
 import java.util.List;
@@ -19,100 +19,99 @@ import javax.persistence.Query;
  *
  * @author José Carlos Grijalva González
  */
-public class ClienteControlador {
-
+public class ProveedorControlador {
     private String Nombre="";
     private String Nit="";
     private String Nrc="";
-    private List<Cliente> Clientes;
-    private Cliente Cliente;
-    //Variables necesarias para el manejo de entidades y clientes
+    private List<Proveedor> Proveedores;
+    private Proveedor Proveedor;
+    //Variables necesarias para el manejo de entidades y proveedores
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaVentas_V1PU");
     private final EntityManager em = emf.createEntityManager();
-    private final ClienteJpaController servicio = new ClienteJpaController(emf);
+    private final ProveedorJpaController servicio = new ProveedorJpaController(emf);
 
     //Constructor
-    public ClienteControlador() {
+    public ProveedorControlador() {
 
     }
     
-    //Obtiene todos los clientes
-    public List<Cliente> Obtener(String parametro){
+    //Obtiene todos los proveedores
+    public List<Proveedor> Obtener(String parametro){
         //Busca todos los elementos
         if(parametro.isEmpty()){
             em.getTransaction().begin();
-            Clientes=servicio.findClienteEntities();
+            Proveedores=servicio.findProveedorEntities();
             em.close();
             emf.close();
         }
         else{//Busqueda con parametro
             
         }
-        return Clientes;
+        return Proveedores;
     }
     
-    //Busca cliente por el nombre
-    public List<Cliente> BuscarXNombre() throws ParseException{
+    //Busca Proveedor por el nombre
+    public List<Proveedor> BuscarXNombre() throws ParseException{
         em.getTransaction().begin();
-        Query q = em.createNamedQuery("Cliente.findByNombre").setParameter("nombre", '%' +Nombre+ '%');
+        Query q = em.createNamedQuery("Proveedor.findByNombre").setParameter("nombre", '%' +Nombre+ '%');
         if(!q.getResultList().isEmpty()){
-            Clientes = q.getResultList();
+            Proveedores = q.getResultList();
         }else{
-            Clientes=null;
+            Proveedores=null;
         }
         em.close();
         emf.close();
 
-        return Clientes;
+        return Proveedores;
     }
     
-    //Busca cliente por el nit
-    public Cliente BuscarXNit(){
+    //Busca Proveedor por el nit
+    public Proveedor BuscarXNit(){
         em.getTransaction().begin();
-        Query q = em.createNamedQuery("Cliente.findByNit").setParameter("nit", Nit);
+        Query q = em.createNamedQuery("Proveedor.findByNit").setParameter("nit", Nit);
         if(!q.getResultList().isEmpty()){
-        Cliente = (Cliente) q.getSingleResult();
+        Proveedor = (Proveedor) q.getSingleResult();
         }else{
-            Cliente=null;
+            Proveedor=null;
         }
         em.close();
         emf.close();
 
-        return Cliente;
+        return Proveedor;
     }
     
-    //Busca cliente por el nrc
-    public Cliente BuscarXNrc(){
+    //Busca Proveedor por el nrc
+    public Proveedor BuscarXNrc(){
         em.getTransaction().begin();
-        Query q = em.createNamedQuery("Cliente.findByNrc").setParameter("nrc", Nrc);
+        Query q = em.createNamedQuery("Proveedor.findByNrc").setParameter("nrc", Nrc);
         if(!q.getResultList().isEmpty()){
-        Cliente = (Cliente) q.getSingleResult();
+        Proveedor = (Proveedor) q.getSingleResult();
         }else{
-            Cliente=null;
+            Proveedor=null;
         }
         em.close();
         emf.close();
 
-        return Cliente;
+        return Proveedor;
     }
    
     
-    //INSERTAR CLIENTES
-    public void Agregar(Cliente cli){
+    //INSERTAR PROVEEDORES
+    public void Agregar(Proveedor pro){
         try {
-            Cliente=new Cliente();
-            Cliente=cli;
+            Proveedor=new Proveedor();
+            Proveedor=pro;
             em.getTransaction().begin();
-            servicio.create(Cliente);
+            servicio.create(Proveedor);
             em.getTransaction().commit();
             em.close();
             emf.close();
         } catch (Exception ex) {
-            Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    //Eliminar CLietes
+    //Eliminar Proveedor
     public void Eliminar(String id){
         try {
             em.getTransaction().begin();
@@ -121,24 +120,24 @@ public class ClienteControlador {
             em.close();
             emf.close();
         } catch (NonexistentEntityException ex) {
-            Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    //Modificar CLietes
-    public void Modificar(Cliente cl){
+    //Modificar Proveedor
+    public void Modificar(Proveedor pr){
         try {
             em.getTransaction().begin();
-            Query q = em.createNamedQuery("Cliente.modificar").setParameter("nombre", cl.getNombre())
-                    .setParameter("nrc", cl.getNrc()).setParameter("giro", cl.getGiro())
-                    .setParameter("direccion", cl.getDireccion()).setParameter("nit", cl.getNit())
-                    .setParameter("telefono", cl.getTelefono()).setParameter("idCliente", cl.getIdCliente());
+            Query q = em.createNamedQuery("Proveedor.modificar").setParameter("nombre", pr.getNombre())
+                    .setParameter("nrc", pr.getNrc()).setParameter("giro", pr.getGiro())
+                    .setParameter("direccion", pr.getDireccion()).setParameter("nit", pr.getNit())
+                    .setParameter("telefono", pr.getTelefono()).setParameter("idProveedor", pr.getIdProveedor());
             q.executeUpdate();
             em.getTransaction().commit();
             em.close();
             emf.close();
         } catch (Exception ex) {
-            Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProveedorControlador.class.getName()).log(Level.SEVERE, null, ex);
         }
     
     }
