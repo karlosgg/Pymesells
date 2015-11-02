@@ -6,6 +6,7 @@
 package Control;
 import Modelo.Entity.Cliente;
 import Modelo.ClienteJpaController;
+import Modelo.exceptions.NonexistentEntityException;
 import java.text.ParseException;
 import java.util.List;
 import java.util.logging.Level;
@@ -111,6 +112,39 @@ public class ClienteControlador {
         }
     }
     
+    //Eliminar CLietes
+    public void Eliminar(String id){
+        try {
+            em.getTransaction().begin();
+            servicio.destroy(id);
+            em.getTransaction().commit();
+            em.close();
+            emf.close();
+        } catch (NonexistentEntityException ex) {
+            Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    //Modificar CLietes
+    public void Modificar(Cliente cl){
+        try {
+            //cl=new Cliente();
+            em.getTransaction().begin();
+            Query q = em.createNamedQuery("Cliente.modificar").setParameter("nombre", cl.getNombre())
+                    .setParameter("nrc", cl.getNrc()).setParameter("giro", cl.getGiro())
+                    .setParameter("direccion", cl.getDireccion()).setParameter("nit", cl.getNit())
+                    .setParameter("telefono", cl.getTelefono()).setParameter("idCliente", cl.getIdCliente());
+            q.executeUpdate();
+            em.getTransaction().commit();
+            em.close();
+            emf.close();
+        } catch (Exception ex) {
+            Logger.getLogger(ClienteControlador.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+    }
+    
+   
     public String getNombre() {
         return Nombre;
     }

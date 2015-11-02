@@ -33,7 +33,10 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Cliente.findByGiro", query = "SELECT c FROM Cliente c WHERE c.giro = :giro"),
     @NamedQuery(name = "Cliente.findByDireccion", query = "SELECT c FROM Cliente c WHERE c.direccion = :direccion"),
     @NamedQuery(name = "Cliente.findByNit", query = "SELECT c FROM Cliente c WHERE c.nit = :nit"),
-    @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono")})
+    @NamedQuery(name = "Cliente.findByTelefono", query = "SELECT c FROM Cliente c WHERE c.telefono = :telefono"),
+    @NamedQuery(name = "Cliente.modificar", query = "UPDATE Cliente c SET c.nombre = :nombre , c.nrc = :nrc ,"
+            + " c.giro = :giro , c.direccion = :direccion , c.nit = :nit , c.telefono = :telefono "
+            + "WHERE c.idCliente = :idCliente")})
 public class Cliente implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
