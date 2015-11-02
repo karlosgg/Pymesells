@@ -19,9 +19,9 @@ import javax.persistence.Persistence;
  * @author Jose Carlos Grijalva
  */
 public class ProductoPeticion {
-    private EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaVentasModificadoPU");
-    private EntityManager em = emf.createEntityManager();
-    private ProductoJpaController servicio = new ProductoJpaController(emf);
+    private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("SistemaVentas_V1PU");
+    private final EntityManager em = emf.createEntityManager();
+    private final ProductoJpaController servicio = new ProductoJpaController(emf);
     private List<Producto> productos;
     private Producto producto;
     
