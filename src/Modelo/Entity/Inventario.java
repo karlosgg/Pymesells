@@ -27,7 +27,9 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Inventario.findAll", query = "SELECT i FROM Inventario i"),
     @NamedQuery(name = "Inventario.findByNumParte", query = "SELECT i FROM Inventario i WHERE i.numParte = :numParte"),
-    @NamedQuery(name = "Inventario.findByCostoGravado", query = "SELECT i FROM Inventario i WHERE i.costoGravado = :costoGravado")})
+    @NamedQuery(name = "Inventario.findByCostoGravado", query = "SELECT i FROM Inventario i WHERE i.costoGravado = :costoGravado"),
+    @NamedQuery(name = "Inventario.modificar", query = "UPDATE Inventario i SET i.costoGravado = :costoGravado , i.idCompra = :idCompra , "
+            + " i.codBarra = :codBarra WHERE i.numParte = :numParte")})
 public class Inventario implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id

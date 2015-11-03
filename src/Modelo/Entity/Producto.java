@@ -28,7 +28,8 @@ import javax.xml.bind.annotation.XmlTransient;
 @NamedQueries({
     @NamedQuery(name = "Producto.findAll", query = "SELECT p FROM Producto p"),
     @NamedQuery(name = "Producto.findByCodBarra", query = "SELECT p FROM Producto p WHERE p.codBarra = :codBarra"),
-    @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre")})
+    @NamedQuery(name = "Producto.findByNombre", query = "SELECT p FROM Producto p WHERE p.nombre = :nombre"),
+    @NamedQuery(name = "Producto.modificar", query = "UPDATE Producto p SET p.nombre = :nombre WHERE p.codBarra = :codBarra")})
 public class Producto implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
